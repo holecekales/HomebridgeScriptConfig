@@ -5,15 +5,15 @@
   "version": "1.0.0",
   "private": true,
   "description": "A Homebridge plugin to configure and trigger Python scripts.",
-  "author": "Your Name",
+  "author": "Ales Holecek",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/alesholecek/homebridge-script-config#readme",
+  "homepage": "https://github.com/holecekales/HomebridgeScriptConfig/blob/latest/README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alesholecek/homebridge-script-config.git"
+    "url": "https://github.com/holecekales/HomebridgeScriptConfig.git"
   },
   "bugs": {
-    "url": "https://github.com/alesholecek/homebridge-script-config/issues"
+    "url": "https://github.com/holecekales/HomebridgeScriptConfig/issues"
   },
   "keywords": [
     "homebridge-plugin"
