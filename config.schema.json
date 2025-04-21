@@ -6,26 +6,11 @@
   "schema": {
     "type": "object",
     "properties": {
-      "name": {
-        "title": "Name",
-        "type": "string",
-        "required": true,
-        "default": "Script Config"
-      },
       "scriptPath": {
         "title": "Python Script Path",
         "type": "string",
-        "default": "/home/ales/scripts/myscript.py"
-      },
-      "scriptArgs": {
-        "title": "Script Arguments",
-        "type": "string",
-        "default": ""
-      },
-      "runOnStartup": {
-        "title": "Run script at startup",
-        "type": "boolean",
-        "default": false
+        "description": "Absolute path to your Python script. The plugin will look for a .env file in the same directory.",
+        "default": "/home/ales/scripts/sunshade.py"
       }
     },
     "required": ["scriptPath"]
