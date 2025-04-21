@@ -10,7 +10,7 @@
         "title": "Python Script Path",
         "type": "string",
         "description": "Absolute path to your Python script. The plugin will look for a .env file in the same directory.",
-        "default": "/home/ales/scripts/sunshade.py"
+        "default": "/home/user/scripts/"
       }
     },
     "required": ["scriptPath"]

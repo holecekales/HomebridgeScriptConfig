@@ -33,6 +33,12 @@ export class ScriptConfigPlatform implements DynamicPlatformPlugin {
   }
 
   private resolveEnvPath(): string {
+
+    if(!this.config.scriptPath) {
+      this.log.warn('No scriptPath configured.');
+      return '';
+    }
+
     const scriptPath = this.config.scriptPath;
     let envPath: string;
     
