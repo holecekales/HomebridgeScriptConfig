@@ -14,7 +14,6 @@ import {
   PlatformConfig,
   PlatformAccessory,
 } from 'homebridge';
-import { env } from 'process';
 
 
 export class ScriptConfigPlatform implements DynamicPlatformPlugin {
