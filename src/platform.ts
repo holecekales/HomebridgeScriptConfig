@@ -25,7 +25,7 @@ export class ScriptConfigPlatform implements DynamicPlatformPlugin {
   ) {
     this.log.info('ScriptConfig plugin loaded');
 
-    this.updateEnvIfNeeded();
+    // this.updateEnvIfNeeded();
 
     if (this.config.runOnStartup) {
       this.runScript();
