@@ -17,69 +17,62 @@ import {
 
 
 export class ScriptConfigPlatform implements DynamicPlatformPlugin {
+  // Plugin configuration values
+  private readonly OWM_API_KEY: string;
+  private readonly CITY_NAME: string;
+  private readonly LATITUDE: number;
+  private readonly LONGITUDE: number;
+  private readonly TIMEZONE: string;
+  private readonly COUNTRY_NAME: string;
+  private readonly SUN_ANGLE_MIN: number;
+  private readonly SUN_ANGLE_MAX: number;
+  private readonly AZIMUTH_MIN: number;
+  private readonly AZIMUTH_MAX: number;
+  private readonly BRITNESS_CLOSE_THRESHOLD: number;
+  private readonly ACCESSORY_ID: string;
+  private readonly HOMEBRIDGE_HOST: string;
+  private readonly HOMEBRIDGE_PORT: number;
 
   constructor(
     public readonly log: Logger,
     public readonly config: PlatformConfig,
     public readonly api: API,
   ) {
+    
     this.log.info('ScriptConfig plugin loaded');
 
-    // this.updateEnvIfNeeded();
+    // OpenWeatherMap API key
+    this.OWM_API_KEY = config.OWM_API_KEY;
+    
+    // Locaton
+    this.CITY_NAME = config.CITY_NAME;
+    this.LATITUDE = parseFloat(config.LATITUDE);
+    this.LONGITUDE = parseFloat(config.LONGITUDE);
+    this.TIMEZONE = config.TIMEZONE;
+    this.COUNTRY_NAME = config.COUNTRY_NAME;
+    
+    // Sun angle limits
+    this.SUN_ANGLE_MIN = parseFloat(config.SUN_ANGLE_MIN);
+    this.SUN_ANGLE_MAX = parseFloat(config.SUN_ANGLE_MAX);
+    this.AZIMUTH_MIN = parseFloat(config.AZIMUTH_MIN);
+    this.AZIMUTH_MAX = parseFloat(config.AZIMUTH_MAX);
+    this.BRITNESS_CLOSE_THRESHOLD = parseFloat(config.BRITNESS_CLOSE_THRESHOLD);
+   
+    // Homebridge specific
+    this.ACCESSORY_ID = config.ACCESSORY_ID;
+    this.HOMEBRIDGE_HOST = config.HOMEBRIDGE_HOST;
+    this.HOMEBRIDGE_PORT = parseInt(config.HOMEBRIDGE_PORT, 10);
 
     if (this.config.runOnStartup) {
       this.runScript();
     }
   }
-
-  private resolveEnvPath(): string {
-
-    if(!this.config.scriptPath) {
-      this.log.warn('No scriptPath configured.');
-      return '';
-    }
-
-    const scriptPath = this.config.scriptPath;
-    let envPath: string;
-    
-    // Case 1: path ends with .env and exists
-    if (scriptPath.endsWith('.env') && existsSync(scriptPath)) {
-      envPath = scriptPath;
-    } else {
-      // Case 2: it's a script or directory → resolve to dirname
-      const baseDir = fs.statSync(scriptPath).isDirectory() ? scriptPath : dirname(scriptPath);
-      envPath = join(baseDir, '.env');
-    }
-
-    return envPath;
-  }
-
-
-  private updateEnvIfNeeded() {
-
-    const envPath : string  = this.resolveEnvPath();
-
-    if (existsSync(envPath)) {
-      
-      this.log.info(`Loading .env from: ${envPath}`);
-      const rawEnv = fs.readFileSync(envPath, 'utf-8');
-      // const parsedEnv = editDotenv.parse(rawEnv);
-      this.log.info('Parsed .env:', rawEnv);
-    } else {
-      this.log.warn(`No .env file found at: ${envPath}`);
-    }
-
-    // Now you can safely use process.env.OWM_API_KEY, etc.
-    // this.log.info(`OpenWeatherMap API key is: ${process.env.OWM_API_KEY ?? '(not set)'}`);
   
-  }
-
   private runScript() {
     if (!this.config.scriptPath) {
       this.log.warn('No scriptPath configured.');
       return;
     }
-
    
     exec(`python3 ${this.config.scriptPath} ${this.config.scriptArgs || ''}`, (err, stdout, stderr) => {
       if (err) {

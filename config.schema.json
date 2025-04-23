@@ -6,14 +6,77 @@
   "schema": {
     "type": "object",
     "properties": {
-      "scriptPath": {
-        "title": "Python Script Path",
+      "OWM_API_KEY": {
+        "title": "Owm Api Key",
+        "type": "string"
+      },
+      "CITY_NAME": {
+        "title": "City Name",
         "type": "string",
-        "description": "Absolute path to your Python script. The plugin will look for a .env file in the same directory.",
-        "default": "/home/user/scripts/"
+        "default": "Kirkland"
+      },
+      "LATITUDE": {
+        "title": "Latitude",
+        "type": "string",
+        "default": "47.6858"
+      },
+      "LONGITUDE": {
+        "title": "Longitude",
+        "type": "string",
+        "default": "-122.2087"
+      },
+      "TIMEZONE": {
+        "title": "Timezone",
+        "type": "string",
+        "default": "America/Los_Angeles"
+      },
+      "COUNTRY_NAME": {
+        "title": "Country Name",
+        "type": "string",
+        "default": "USA"
+      },
+      "SUN_ANGLE_MIN": {
+        "title": "Sun Angle Min",
+        "type": "string",
+        "default": "7"
+      },
+      "SUN_ANGLE_MAX": {
+        "title": "Sun Angle Max",
+        "type": "string",
+        "default": "42"
+      },
+      "AZIMUTH_MIN": {
+        "title": "Azimuth Min",
+        "type": "string",
+        "default": "200"
+      },
+      "AZIMUTH_MAX": {
+        "title": "Azimuth Max",
+        "type": "string",
+        "default": "310"
+      },
+      "BRITNESS_CLOSE_THRESHOLD": {
+        "title": "Britness Close Threshold",
+        "type": "string",
+        "default": "33"
+      },
+      "ACCESSORY_ID": {
+        "title": "Accessory Id",
+        "type": "string",
+        "default": "sun-incline"
+      },
+      "HOMEBRIDGE_HOST": {
+        "title": "Homebridge Host",
+        "type": "string",
+        "default": "http://homebridge.local"
+      },
+      "HOMEBRIDGE_PORT": {
+        "title": "Homebridge Port",
+        "type": "string",
+        "default": "51828"
       }
     },
-    "required": ["scriptPath"]
+    "required": ["OWM_API_KEY"]
   }
 }
 
