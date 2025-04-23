@@ -7,7 +7,7 @@
     "type": "object",
     "properties": {
       "OWM_API_KEY": {
-        "title": "Owm Api Key",
+        "title": "Owm Api Key. Get it at https://home.openweathermap.org/api_keys",
         "type": "string"
       },
       "CITY_NAME": {
@@ -16,19 +16,19 @@
         "default": "Kirkland"
       },
       "LATITUDE": {
-        "title": "Latitude",
+        "title": "Latitude [Deg]",
         "type": "string",
         "default": "47.6858"
       },
       "LONGITUDE": {
-        "title": "Longitude",
+        "title": "Longitude [Deg]",
         "type": "string",
         "default": "-122.2087"
       },
       "TIMEZONE": {
-        "title": "Timezone",
+        "title": "IANA time zone identifier. Find it at https://time.is",
         "type": "string",
-        "default": "America/Los_Angeles"
+        "default": "America/Los_Angeles "
       },
       "COUNTRY_NAME": {
         "title": "Country Name",
@@ -36,27 +36,27 @@
         "default": "USA"
       },
       "SUN_ANGLE_MIN": {
-        "title": "Sun Angle Min",
+        "title": "Sun Angle Min [Deg]" ,
         "type": "string",
         "default": "7"
       },
       "SUN_ANGLE_MAX": {
-        "title": "Sun Angle Max",
+        "title": "Sun Angle Max [Deg]",
         "type": "string",
         "default": "42"
       },
       "AZIMUTH_MIN": {
-        "title": "Azimuth Min",
+        "title": "Azimuth Min [Deg]",
         "type": "string",
         "default": "200"
       },
       "AZIMUTH_MAX": {
-        "title": "Azimuth Max",
+        "title": "Azimuth Max [Deg]",
         "type": "string",
         "default": "310"
       },
       "BRITNESS_CLOSE_THRESHOLD": {
-        "title": "Britness Close Threshold",
+        "title": "Cloud Cover Threshold [%]",
         "type": "string",
         "default": "33"
       },
