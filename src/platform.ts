@@ -29,8 +29,7 @@ export class ScriptConfigPlatform implements DynamicPlatformPlugin {
     
     this.api.on(APIEvent.DID_FINISH_LAUNCHING, () => {
       this.createOrRestoreContactSensor();
-      // this.initTimer();
-          
+      this.initTimer();
     });
 
     // cleanup
