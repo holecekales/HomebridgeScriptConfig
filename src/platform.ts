@@ -11,12 +11,15 @@ import {
   Logger, 
   PlatformConfig,
   PlatformAccessory,
+  APIEvent,
 } from 'homebridge';
 
 
 export class ScriptConfigPlatform implements DynamicPlatformPlugin {
  
   private readonly accessories: PlatformAccessory[] = [];
+  private pollTimer: NodeJS.Timeout | undefined;
+  private sensorState: number = 0; // 0 = contact, 1 = no contact
   
   constructor(
     public readonly log: Logger,
@@ -24,11 +27,36 @@ export class ScriptConfigPlatform implements DynamicPlatformPlugin {
     public readonly api: API,
   ) {
     
-    this.api.on('didFinishLaunching', () => {
+    this.api.on(APIEvent.DID_FINISH_LAUNCHING, () => {
       this.createOrRestoreContactSensor();
+      // this.initTimer();
+          
+    });
+
+    // cleanup
+    this.api.on(APIEvent.SHUTDOWN, () => {
+      this.cleanup();
     });
   }
  
+  initTimer(): void {
+    this.log.info('Finished launching, starting periodic task');
+    const interval = this.config.POLL_INTERVAL ?? 10;
+    this.pollTimer = setInterval(() => {      
+      const state = this.sensorState === 0 ? 1 : 0; // toggle state
+      this.sensorState = state;
+      this.updateContactSensorState(state); // toggle state
+    }, interval * 1000);
+  }
+
+  cleanup(): void {
+    this.log.info('Cleaning up before shutdown');
+    if (this.pollTimer) {
+      clearInterval(this.pollTimer);
+      this.pollTimer = undefined;
+    }
+  }
+
   configureAccessory(accessory: PlatformAccessory): void {
     this.log.info(`Restoring cached accessory: ${accessory.displayName}`);
     this.accessories.push(accessory);
