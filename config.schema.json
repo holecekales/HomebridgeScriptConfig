@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "ScriptConfig",
+  "pluginAlias": "WxSensorPlatform",
   "pluginType": "platform",
   "singular": true,
   "strictValidation": false,

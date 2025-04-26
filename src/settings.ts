@@ -1,9 +1,9 @@
 /**
  * This is the name of the platform that users will use to register the plugin in the Homebridge config.json
  */
-export const PLATFORM_NAME = 'ScriptConfig';
+export const PLATFORM_NAME = 'WxSensorPlatform';
 
 /**
  * This must match the name of your plugin as defined the package.json `name` property
  */
-export const PLUGIN_NAME = 'homebridge-script-config';
+export const PLUGIN_NAME = 'homebridge-wxsensors';
